@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
-import chiffrage_dechiffrage
-import Vigenere
+import chiffrage_dechiffrage as c
+import Vigenere as v
 
 # Encryption and decryption functions
 def caesar_cipher(text, shift, mode='encrypt'):
@@ -63,13 +63,7 @@ label_plain.grid(row=0, column=0, padx=5, pady=5)
 text_plain = tk.Text(main_frame, height=10, width=40)
 text_plain.grid(row=1, column=0, padx=5, pady=5)
 
-# Middle (Buttons)
-button_frame = tk.Frame(main_frame, bg='blue')
-button_frame.grid(row=1, column=1, padx=5, pady=5)
-encrypt_button = tk.Button(button_frame, text='=> Encoder =>', command=encrypt_text)
-encrypt_button.pack(side=tk.TOP, pady=5)
-decrypt_button = tk.Button(button_frame, text='<= Décoder<=', command=decrypt_text)
-decrypt_button.pack(side=tk.TOP, pady=5)
+
 
 # Right side (Encrypted text)
 label_encrypted = tk.Label(main_frame, text='Texte Chiffré:')
@@ -90,6 +84,14 @@ shift_label = tk.Label(main_frame, text='Nombre de décalage:')
 shift_label.grid(row=3, column=0, padx=5, pady=5, sticky='e')
 shift_entry = tk.Entry(main_frame)
 shift_entry.grid(row=3, column=1, padx=5, pady=5, sticky='w')
+
+# Middle (Buttons)
+button_frame = tk.Frame(main_frame, bg='blue')
+button_frame.grid(row=1, column=1, padx=5, pady=5)
+encrypt_button = tk.Button(button_frame, text='=> Encoder =>', command=c.codage(shift_entry.get(), text_plain.get(), text_encrypted))
+encrypt_button.pack(side=tk.TOP, pady=5)
+decrypt_button = tk.Button(button_frame, text='<= Décoder<=', command=decrypt_text)
+decrypt_button.pack(side=tk.TOP, pady=5)
 
 root.mainloop()
 

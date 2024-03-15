@@ -1,5 +1,6 @@
 from tkinter import *
- 
+
+
 alphabet_initial_codage_cesar={
 1:"a",  2:"b",  3:"c",
 4:"d",  5:"e",  6:"f",
@@ -14,10 +15,10 @@ alphabet_initial_codage_cesar={
 31:"?", 32:"'", 33:"-",
 34:";", 35:"(", 36:")"
 }
- 
-def codage():
-    step = int(decalage_v.get())
-    message_initial = a_coder_v.get()
+
+def codage(shift, plainText, encrypted):
+    step = int(shift)
+    message_initial = plainText
  
     alphabet_code_codage_cesar={
 "a":(1+step)%26,    "b":(2+step)%26,    "c":(3+step)%26,
@@ -49,37 +50,37 @@ def codage():
  
     message_final="".join(message_final_l)
  
-    code.delete(0,END)
-    code.insert(0,message_final)
+    text_encrypted.delete(0,END)
+    text_encrypted.insert(0,message_final)
  
-WIDTH=450
-HEIGHT=150
+# WIDTH=450
+# HEIGHT=150
  
-main_win = Tk()
-main_win.title('Codage de César')
-main_win.geometry(str(WIDTH)+'x'+str(HEIGHT)+'+300+100')
+# main_win = Tk()
+# main_win.title('Codage de César')
+# main_win.geometry(str(WIDTH)+'x'+str(HEIGHT)+'+300+100')
  
-#Saisie du décalage d'alphabet
-decalage_t = Label(main_win, text='Décalage à partir du "a" (entre 0 et 25)')
-decalage_t.place(x = 10,y = 10)
+# #Saisie du décalage d'alphabet
+# decalage_t = Label(main_win, text='Décalage à partir du "a" (entre 0 et 25)')
+# decalage_t.place(x = 10,y = 10)
  
-decalage_v = Entry(main_win, width = 5)
-decalage_v.place(x = 230,y = 10)
-decalage_v.focus()
+# decalage_v = Entry(main_win, width = 5)
+# decalage_v.place(x = 230,y = 10)
+# decalage_v.focus()
  
-#Saisie du message à coder
-a_coder_t = Label(main_win, text='Message à coder')
-a_coder_t.place(x = 10,y = 40)
+# #Saisie du message à coder
+# a_coder_t = Label(main_win, text='Message à coder')
+# a_coder_t.place(x = 10,y = 40)
  
-a_coder_v = Entry(main_win, width = 35)
-a_coder_v.place(x = 230,y = 40)
-a_coder_v.focus()
+# a_coder_v = Entry(main_win, width = 35)
+# a_coder_v.place(x = 230,y = 40)
+# a_coder_v.focus()
  
-#Codage
-code_b = Button(main_win, text='Coder', width = 20, justify = 'left', command=codage)
-code_b.place(x = 10,y = 70)
+# #Codage
+# code_b = Button(main_win, text='Coder', width = 20, justify = 'left', command=codage)
+# code_b.place(x = 10,y = 70)
  
-code = Entry(main_win, width = 35)
-code.place(x = 230, y = 70)
+# code = Entry(main_win, width = 35)
+# code.place(x = 230, y = 70)
  
-main_win.mainloop()
+# main_win.mainloop()
