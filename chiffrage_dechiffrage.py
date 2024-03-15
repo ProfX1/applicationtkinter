@@ -50,8 +50,8 @@ def codage(shift, plainText, encrypted):
  
     message_final="".join(message_final_l)
  
-    encrypted.delete(0,END)
-    encrypted.insert(0,message_final)
+    encrypted.delete(1.0, END)
+    encrypted.insert(1.0,message_final)
  
 # WIDTH=450
 # HEIGHT=150
