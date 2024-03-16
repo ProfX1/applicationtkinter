@@ -27,23 +27,23 @@ import random
 # lblInfo.grid(row = 0, column = 0)
 
 
-rand = StringVar()
-Msg = StringVar()
-key = StringVar()
-mode = StringVar()
-Result = StringVar()
+# rand = StringVar()
+# Msg = StringVar()
+# key = StringVar()
+# mode = StringVar()
+# Result = StringVar()
 
 # exit function
 # def qExit():
 # 	root.destroy()
 
 # Function to reset the window
-def Reset():
-	rand.set("")
-	Msg.set("")
-	key.set("")
-	mode.set("")
-	Result.set("")
+# def Reset():
+# 	rand.set("")
+# 	Msg.set("")
+# 	key.set("")
+# 	mode.set("")
+# 	Result.set("")
 
 # # labels
 # lblMsg = Label(f1, font = ('arial', 16, 'bold'),
@@ -121,17 +121,17 @@ def decode(key, enc):
 	return "".join(dec)
 
 
-def Ref():
-	print("Message= ", (Msg.get()))
+# def Ref():
+# 	print("Message= ", (Msg.get()))
 
-	clear = Msg.get()
-	k = key.get()
-	m = mode.get()
+# 	clear = Msg.get()
+# 	k = key.get()
+# 	m = mode.get()
 
-	if (m == 'e'):
-		Result.set(encode(k, clear))
-	else:
-		Result.set(decode(k, clear))
+# 	if (m == 'e'):
+# 		Result.set(encode(k, clear))
+# 	else:
+# 		Result.set(decode(k, clear))
 
 # # Show message button
 # btnTotal = Button(f1, padx = 16, pady = 8, bd = 16, fg = "black",
