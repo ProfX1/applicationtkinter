@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 import chiffrage_dechiffrage as c
-import Vigenere as v
+# import Vigenere as v
 
 # Encryption and decryption functions
 def caesar_cipher(text, shift, mode='encrypt'):
