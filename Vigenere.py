@@ -2,7 +2,7 @@ from tkinter import *
 import random
 
 # creating root object
-root = Tk()
+# root = Tk()
 
 # # defining size of window
 # root.geometry("1080x720")
@@ -34,8 +34,8 @@ mode = StringVar()
 Result = StringVar()
 
 # exit function
-def qExit():
-	root.destroy()
+# def qExit():
+# 	root.destroy()
 
 # Function to reset the window
 def Reset():
