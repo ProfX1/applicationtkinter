@@ -4,27 +4,27 @@ import random
 # creating root object
 root = Tk()
 
-# defining size of window
-root.geometry("1080x720")
+# # defining size of window
+# root.geometry("1080x720")
 
-# setting up the title of window
-root.title("Encryption and Decryption using Vigenère cipher")
+# # setting up the title of window
+# root.title("Encryption and Decryption using Vigenère cipher")
 
-Tops = Frame(root, width = 1600, relief = SUNKEN)
-Tops.pack(side = TOP)
+# Tops = Frame(root, width = 1600, relief = SUNKEN)
+# Tops.pack(side = TOP)
 
-f1 = Frame(root, width = 800, height = 700,
-							relief = SUNKEN)
-f1.pack(side = LEFT)
+# f1 = Frame(root, width = 800, height = 700,
+# 							relief = SUNKEN)
+# f1.pack(side = LEFT)
 
-lblInfo = Label(Tops, font = ('helvetica', 50, 'bold'),
-		text = "  SECRET TEXT \n Vigenère cipher",
-					fg = "Black", bd = 10, bg="#f2f8c0", anchor='w')
-
-
+# lblInfo = Label(Tops, font = ('helvetica', 50, 'bold'),
+# 		text = "  SECRET TEXT \n Vigenère cipher",
+# 					fg = "Black", bd = 10, bg="#f2f8c0", anchor='w')
 
 
-lblInfo.grid(row = 0, column = 0)
+
+
+# lblInfo.grid(row = 0, column = 0)
 
 
 rand = StringVar()
@@ -45,51 +45,51 @@ def Reset():
 	mode.set("")
 	Result.set("")
 
-# labels
-lblMsg = Label(f1, font = ('arial', 16, 'bold'),
-		text = "Message", bd = 16, anchor = "w")
+# # labels
+# lblMsg = Label(f1, font = ('arial', 16, 'bold'),
+# 		text = "Message", bd = 16, anchor = "w")
 
-lblMsg.grid(row = 1, column = 0)
+# lblMsg.grid(row = 1, column = 0)
 
-txtMsg = Entry(f1, font = ('arial', 16, 'bold'),
-		textvariable = Msg, bd = 10, insertwidth = 4,
-				bg = "powder blue", justify = 'right')
+# txtMsg = Entry(f1, font = ('arial', 16, 'bold'),
+# 		textvariable = Msg, bd = 10, insertwidth = 4,
+# 				bg = "powder blue", justify = 'right')
 
-txtMsg.grid(row = 1, column = 1)
+# txtMsg.grid(row = 1, column = 1)
 
-lblkey = Label(f1, font = ('arial', 16, 'bold'),
-			text = "Key", bd = 16, anchor = "w")
+# lblkey = Label(f1, font = ('arial', 16, 'bold'),
+# 			text = "Key", bd = 16, anchor = "w")
 
-lblkey.grid(row = 2, column = 0)
+# lblkey.grid(row = 2, column = 0)
 
-txtkey = Entry(f1, font = ('arial', 16, 'bold'),
-		textvariable = key, bd = 10, insertwidth = 4,
-				bg = "powder blue", justify = 'right')
+# txtkey = Entry(f1, font = ('arial', 16, 'bold'),
+# 		textvariable = key, bd = 10, insertwidth = 4,
+# 				bg = "powder blue", justify = 'right')
 
-txtkey.grid(row = 2, column = 1)
+# txtkey.grid(row = 2, column = 1)
 
-lblmode = Label(f1, font = ('arial', 16, 'bold'),
-		text = "Mode \n (e : encrypt / d : decrypt)",
-								bd = 16, anchor = "w")
+# lblmode = Label(f1, font = ('arial', 16, 'bold'),
+# 		text = "Mode \n (e : encrypt / d : decrypt)",
+# 								bd = 16, anchor = "w")
 
-lblmode.grid(row = 3, column = 0)
+# lblmode.grid(row = 3, column = 0)
 
-txtmode = Entry(f1, font = ('arial', 16, 'bold'),
-		textvariable = mode, bd = 10, insertwidth = 4,
-				bg = "powder blue", justify = 'right')
+# txtmode = Entry(f1, font = ('arial', 16, 'bold'),
+# 		textvariable = mode, bd = 10, insertwidth = 4,
+# 				bg = "powder blue", justify = 'right')
 
-txtmode.grid(row = 3, column = 1)
+# txtmode.grid(row = 3, column = 1)
 
-lblService = Label(f1, font = ('arial', 16, 'bold'),
-			text = "Result", bd = 16, anchor = "w")
+# lblService = Label(f1, font = ('arial', 16, 'bold'),
+# 			text = "Result", bd = 16, anchor = "w")
 
-lblService.grid(row = 2, column = 2)
+# lblService.grid(row = 2, column = 2)
 
-txtService = Entry(f1, font = ('arial', 16, 'bold'),
-			textvariable = Result, bd = 10, insertwidth = 4,
-					bg = "#bbffb9", justify = 'right')
+# txtService = Entry(f1, font = ('arial', 16, 'bold'),
+# 			textvariable = Result, bd = 10, insertwidth = 4,
+# 					bg = "#bbffb9", justify = 'right')
 
-txtService.grid(row = 2, column = 3)
+# txtService.grid(row = 2, column = 3)
 
 # Vigenère cipher
 import base64
@@ -133,23 +133,23 @@ def Ref():
 	else:
 		Result.set(decode(k, clear))
 
-# Show message button
-btnTotal = Button(f1, padx = 16, pady = 8, bd = 16, fg = "black",
-						font = ('arial', 16, 'bold'), width = 10,
-					text = "Show Message", bg = "powder blue",
-						command = Ref).grid(row = 7, column = 1)
+# # Show message button
+# btnTotal = Button(f1, padx = 16, pady = 8, bd = 16, fg = "black",
+# 						font = ('arial', 16, 'bold'), width = 10,
+# 					text = "Show Message", bg = "powder blue",
+# 						command = Ref).grid(row = 7, column = 1)
 
-# Reset button
-btnReset = Button(f1, padx = 16, pady = 8, bd = 16,
-				fg = "black", font = ('arial', 16, 'bold'),
-					width = 10, text = "Reset", bg = "green",
-				command = Reset).grid(row = 7, column = 2)
+# # Reset button
+# btnReset = Button(f1, padx = 16, pady = 8, bd = 16,
+# 				fg = "black", font = ('arial', 16, 'bold'),
+# 					width = 10, text = "Reset", bg = "green",
+# 				command = Reset).grid(row = 7, column = 2)
 
-# Exit button
-btnExit = Button(f1, padx = 16, pady = 8, bd = 16,
-				fg = "black", font = ('arial', 16, 'bold'),
-					width = 10, text = "Exit", bg = "red",
-				command = qExit).grid(row = 7, column = 3)
+# # Exit button
+# btnExit = Button(f1, padx = 16, pady = 8, bd = 16,
+# 				fg = "black", font = ('arial', 16, 'bold'),
+# 					width = 10, text = "Exit", bg = "red",
+# 				command = qExit).grid(row = 7, column = 3)
 
 
-# root.mainloop()
+# # root.mainloop()

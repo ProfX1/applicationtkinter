@@ -38,7 +38,7 @@ def decrypt_text():
 # Create the main application window
 root = tk.Tk()
 root.title('Application de Chiffrage de Texte')
-root.configure(bg='blue')
+root.configure(bg='grey')
 
 # Menu bar at the top
 menu_bar = tk.Menu(root, bg='white')
@@ -54,7 +54,7 @@ file_menu.add_command(label='Fermer', command=root.quit)
 menu_bar.add_cascade(label='Fichier', menu=file_menu)
 
 # Create the main frame
-main_frame = tk.Frame(root, bg='blue')
+main_frame = tk.Frame(root, bg='grey')
 main_frame.pack(padx=10, pady=10)
 
 # Left side (Plain text)
@@ -86,7 +86,7 @@ shift_entry = tk.Entry(main_frame)
 shift_entry.grid(row=3, column=1, padx=5, pady=5, sticky='w')
 
 # Middle (Buttons)
-button_frame = tk.Frame(main_frame, bg='blue')
+button_frame = tk.Frame(main_frame, bg='grey')
 button_frame.grid(row=1, column=1, padx=5, pady=5)
 encrypt_button = tk.Button(button_frame, text='=> Encoder =>', command=lambda: c.codage(shift_entry.get(), text_plain.get("1.0", tk.END), text_encrypted))
 encrypt_button.pack(side=tk.TOP, pady=5)
