@@ -2,16 +2,16 @@ import tkinter as tk
 from tkinter import ttk
 import chiffrage_dechiffrage as c
 import Vigenere as v
-def coding(encryption_dropdown,shift_entry, text_plain, text_encrypted):
-    if encryption_dropdown == ('César' or 'César avec décalage incrémental'):
-        c.codage(shift_entry, text_plain, text_encrypted)
-    elif encryption_dropdown == 'Vigenère':
+def coding(encryption_drop,shift_entry, text_unencrypted, text_encrypt):
+    if encryption_dropdown in ('César', 'César avec décalage incrémental'):
+        c.codage(shift_entry, text_unencrypted, text_encrypt)
+    elif encryption_dropdown.get() == 'Vigenère':
         v.encode(shift_entry, text_plain)
     else:
         return
-def decoding(encryption_dropdown,shift_entry, text_plain, text_encrypted):
-    if encryption_dropdown == ('César' or 'César avec décalage incrémental'):
-        c.codage(shift_entry, text_plain, text_encrypted)
+def decoding(encryption_drop,shift_entry, text_unencrypted, text_encrypt):
+    if encryption_drop in ('César', 'César avec décalage incrémental'):
+        c.codage(shift_entry, text_unencrypted, text_encrypt)
     elif encryption_dropdown == 'Vigenère':
         v.decode(shift_entry, text_plain)
     else:
@@ -104,9 +104,9 @@ shift_entry.grid(row=3, column=1, padx=5, pady=5, sticky='w')
 # Middle (Buttons)
 button_frame = tk.Frame(main_frame, bg='grey')
 button_frame.grid(row=1, column=1, padx=5, pady=5)
-encrypt_button = tk.Button(button_frame, text='=> Encoder =>', command=lambda: coding(encryption_dropdown.get(),shift_entry.get(), text_plain.get("1.0", tk.END), text_encrypted))
+encrypt_button = tk.Button(button_frame, text='=> Encoder =>', command=lambda: coding(encryption_dropdown.get(),shift_entry.get(), text_plain.get("1.0", tk.END), text_encrypted.get("1.0", tk.END)))
 encrypt_button.pack(side=tk.TOP, pady=5)
-decrypt_button = tk.Button(button_frame, text='<= Décoder<=', command=lambda: decoding(encryption_dropdown.get(),shift_entry.get(), text_plain.get("1.0", tk.END), text_encrypted))
+decrypt_button = tk.Button(button_frame, text='<= Décoder<=', command=lambda: decoding(encryption_dropdown.get(),shift_entry.get(), text_plain.get("1.0", tk.END), text_encrypted.get("1.0", tk.END)))
 decrypt_button.pack(side=tk.TOP, pady=5)
 
 root.mainloop()
