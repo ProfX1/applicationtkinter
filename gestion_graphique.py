@@ -3,7 +3,9 @@ from tkinter import ttk
 import chiffrage_dechiffrage as c
 
 def coding(encryption_drop,shift_entry, text_unencrypted, text_encrypt):
-    if encryption_dropdown in ('César', 'César avec décalage incrémental'):
+    if encryption_dropdown == 'César':
+        c.cesar_encryption(text_unencrypted)
+    elif encryption_dropdown == 'César avec décalage incrémental':
         c.cesar_encryption(text_unencrypted, shift_entry)
     elif encryption_dropdown.get() == 'Vigenère':
         c.encode(shift_entry, text_plain)
