@@ -50,9 +50,9 @@ left_frame.pack(side=tk.LEFT, fill='both', expand=True, padx=10, pady=10)
 # URL and Selector Entries and Labels
 label_url_selector = tk.Label(left_frame, text="Url, et Selecteur:", bg='light grey')
 label_url_selector.pack(fill='x')
-entry_url = tk.Entry(left_frame, width=50)
+entry_url = ttk.Entry(left_frame, width=50)
 entry_url.pack(fill='x', padx=5, pady=5)
-entry_selector = tk.Entry(left_frame, width=50)
+entry_selector = ttk.Entry(left_frame, width=50)
 entry_selector.pack(fill='x', padx=5, pady=5)
 
 # Button Frame for vertical alignment
@@ -71,7 +71,7 @@ label_method.pack(side=tk.LEFT,padx=1)
 encryption_methods = tk.StringVar()
 encryption_dropdown = ttk.Combobox(left_frame, textvariable=encryption_methods, state="readonly")
 encryption_dropdown['values'] = ('Cesar', 'César avec décalage incrémental', 'Vigenère')  # Add other methods as needed
-encryption_dropdown.pack(fill='x')
+encryption_dropdown.pack(fill= 'x')
 encryption_dropdown.current(0)
 
 # Shift Entry and Label in their own frame for vertical alignment
