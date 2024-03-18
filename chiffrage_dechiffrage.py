@@ -46,7 +46,8 @@ def decode(key, enc):
 
 		dec.append(dec_c)
 	return "".join(dec)
-
+print(encode("sdf", "Hello world")) #w5vDicOSw5_Dk8KGw6rDk8OYw5_DiA==
+print(decode("sdf", "wrvDicOSw5_Dk8KGw6rDk8OYw5_DiA==")) #Hello world
 # alphabet_initial_codage_cesar={
 # 1:"a",  2:"b",  3:"c",
 # 4:"d",  5:"e",  6:"f",
