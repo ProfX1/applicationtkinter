@@ -1,5 +1,51 @@
 from tkinter import *
+import random
+import base64
 
+
+# def cesar_encryption (message, offset = 1):
+#     encrypted_message = ""
+
+#     for char in message:
+#         encrypted_message += chr(ord(char) + offset)
+#     return encrypted_message
+
+# print (cesar_encryption("I LOVE NATURE", 1)) # J!MPWF!OBUVSF
+
+# def cesar_decryption (encrypted_message, offset = 1):
+#     message = ""
+
+#     for char in message:
+#         message -= chr(ord(char) + offset)
+#     return encrypted_message
+
+# print (cesar_encryption("I LOVE NATURE", 1)) # J!MPWF!OBUVSF
+
+# Function to encode
+# def encode(key, clear):
+# 	enc = []
+
+# 	for i in range(len(clear)):
+# 		key_c = key[i % len(key)]
+# 		enc_c = chr((ord(clear[i]) +
+# 					ord(key_c)) % 256)
+
+# 		enc.append(enc_c)
+
+# 	return base64.urlsafe_b64encode("".join(enc).encode()).decode()
+
+# # Function to decode
+# def decode(key, enc):
+# 	dec = []
+
+# 	enc = base64.urlsafe_b64decode(enc).decode()
+# 	for i in range(len(enc)):
+# 		key_c = key[i % len(key)]
+# 		dec_c = chr((256 + ord(enc[i]) -
+# 						ord(key_c)) % 256)
+
+# 		dec.append(dec_c)
+# 	return "".join(dec)
 
 alphabet_initial_codage_cesar={
 1:"a",  2:"b",  3:"c",
