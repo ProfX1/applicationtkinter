@@ -1,19 +1,19 @@
 import tkinter as tk
 from tkinter import ttk
 import chiffrage_dechiffrage as c
-import Vigenere as v
+
 def coding(encryption_drop,shift_entry, text_unencrypted, text_encrypt):
     if encryption_dropdown in ('César', 'César avec décalage incrémental'):
-        c.codage(shift_entry, text_unencrypted, text_encrypt)
+        c.cesar_encryption(text_unencrypted, shift_entry)
     elif encryption_dropdown.get() == 'Vigenère':
-        v.encode(shift_entry, text_plain)
+        c.encode(shift_entry, text_plain)
     else:
         return
 def decoding(encryption_drop,shift_entry, text_unencrypted, text_encrypt):
     if encryption_drop in ('César', 'César avec décalage incrémental'):
-        c.codage(shift_entry, text_unencrypted, text_encrypt)
+        c.cesar_decryption(text_encrypt, shift_entry)
     elif encryption_dropdown == 'Vigenère':
-        v.decode(shift_entry, text_plain)
+        c.decode(shift_entry, text_plain)
     else:
         return
 
