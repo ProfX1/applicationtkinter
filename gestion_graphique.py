@@ -18,39 +18,6 @@ def decoding(encryption_drop,shift_entry, text_unencrypted, text_encrypt):
         return
 
 
-
-# Encryption and decryption functions
-def caesar_cipher(text, shift, mode='encrypt'):
-    result = ""
-    for char in text:
-        if char.isalpha():
-            shift_amount = shift if mode == 'encrypt' else -shift
-            char_code = ord(char) + shift_amount
-            if char.islower():
-                char_code = (char_code - 97) % 26 + 97
-            else:
-                char_code = (char_code - 65) % 26 + 65
-            result += chr(char_code)
-        else:
-            result += char
-    return result
-
-# Callback for the encrypt button
-def encrypt_text():
-    plain_text = text_plain.get("1.0", tk.END).strip()
-    shift = int(shift_entry.get())
-    encrypted_text = caesar_cipher(plain_text, shift, mode='encrypt')
-    text_encrypted.delete("1.0", tk.END)
-    text_encrypted.insert(tk.END, encrypted_text)
-
-# Callback for the decrypt button
-def decrypt_text():
-    encrypted_text = text_encrypted.get("1.0", tk.END).strip()
-    shift = int(shift_entry.get())
-    plain_text = caesar_cipher(encrypted_text, shift, mode='decrypt')
-    text_plain.delete("1.0", tk.END)
-    text_plain.insert(tk.END, plain_text)
-
 # Create the main application window
 root = tk.Tk()
 root.title('Application de Chiffrage de Texte')
