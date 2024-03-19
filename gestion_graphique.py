@@ -3,19 +3,23 @@ from tkinter import ttk
 import chiffrage_dechiffrage as c
 
 def coding(encryption_drop,shift_entry, text_unencrypted, text_encrypt):
-    if encryption_dropdown == 'César':
-        c.cesar_encryption(text_unencrypted)
-    elif encryption_dropdown == 'César avec décalage incrémental':
-        c.cesar_encryption(text_unencrypted, shift_entry)
-    elif encryption_dropdown.get() == 'Vigenère':
-        c.encode(shift_entry, text_plain)
+    if encryption_drop == 'César':
+        text_encrypt = c.cesar_encryption(text_unencrypted)
+    elif encryption_drop == 'César avec décalage incrémental':
+        text_encrypt = c.cesar_encryption(text_unencrypted, shift_entry)
+    elif encryption_drop == 'Vigenère':
+        text_encrypt = c.encode(shift_entry, text_plain)
     else:
         return
 def decoding(encryption_drop,shift_entry, text_unencrypted, text_encrypt):
-    if encryption_drop in ('César', 'César avec décalage incrémental'):
-        c.cesar_decryption(text_encrypt, shift_entry)
+    if encryption_drop == 'César':
+        text_unencrypted = c.cesar_decryption(text_encrypt)
+    
+    elif encryption_drop == 'César avec décalage incrémental':
+        text_unencrypted = c.cesar_decryption(text_encrypt, shift_entry)
+        
     elif encryption_dropdown == 'Vigenère':
-        c.decode(shift_entry, text_plain)
+        text_unencrypted = c.decode(shift_entry, text_encrypt)
     else:
         return
 
@@ -61,7 +65,7 @@ text_encrypted.grid(row=1, column=2, padx=5, pady=5)
 encryption_methods = tk.StringVar()
 encryption_method_label = tk.Label(main_frame, text='Fonction de chiffrage:')
 encryption_method_label.grid(row=2, column=0, padx=5, pady=5, sticky='e')
-encryption_dropdown = ttk.Combobox(main_frame, textvariable=encryption_methods, state="readonly")
+encryption_dropdown = ttk.Combobox(main_frame, textvariable=encryption_methods, state="readonly", )
 encryption_dropdown['values'] = ('César', 'César avec décalage incrémental', 'Vigenère')
 encryption_dropdown.grid(row=2, column=1, padx=5, pady=5, sticky='w')
 # Entry for the number of shifts
@@ -73,9 +77,9 @@ shift_entry.grid(row=3, column=1, padx=5, pady=5, sticky='w')
 # Middle (Buttons)
 button_frame = tk.Frame(main_frame, bg='grey')
 button_frame.grid(row=1, column=1, padx=5, pady=5)
-encrypt_button = tk.Button(button_frame, text='=> Encoder =>', command=lambda: coding(encryption_dropdown.get(),shift_entry.get(), text_plain.get("1.0", tk.END), text_encrypted.get("1.0", tk.END)))
+encrypt_button = tk.Button(button_frame, text='=> Encoder =>', command=lambda: coding(encryption_methods.get(),shift_entry.get(), text_plain.get("1.0", tk.END), text_encrypted.get("1.0", tk.END)))
 encrypt_button.pack(side=tk.TOP, pady=5)
-decrypt_button = tk.Button(button_frame, text='<= Décoder<=', command=lambda: decoding(encryption_dropdown.get(),shift_entry.get(), text_plain.get("1.0", tk.END), text_encrypted.get("1.0", tk.END)))
+decrypt_button = tk.Button(button_frame, text='<= Décoder<=', command=lambda: decoding(encryption_methods.get(),shift_entry.get(), text_plain.get("1.0", tk.END), text_encrypted.get("1.0", tk.END)))
 decrypt_button.pack(side=tk.TOP, pady=5)
 
 root.mainloop()
