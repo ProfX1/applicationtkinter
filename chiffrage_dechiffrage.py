@@ -7,7 +7,7 @@ def cesar_encryption (message, offset = 1):
     encrypted_message = ""
 
     for char in message:
-        encrypted_message += chr(ord(char) + offset)
+        encrypted_message += chr(ord(char) + int(offset))
     return encrypted_message
 
 # print (cesar_encryption("I LOVE NATURE", 1)) # J!MPWF!OBUVSF
@@ -16,7 +16,7 @@ def cesar_decryption (encrypted_message, offset = 1):
     message = ""
 
     for char in encrypted_message:
-        message += chr(ord(char) - offset)
+        message += chr(ord(char) - int(offset))
     return message
 
 # print (cesar_decryption("J!MPWF!OBUVSF", 1)) # J!MPWF!OBUVSF

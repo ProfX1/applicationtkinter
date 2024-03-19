@@ -9,6 +9,7 @@ def coding(encryption_drop,shift_entry, text_unencrypted, text_encrypt):
         text_encrypt = c.cesar_encryption(text_unencrypted, shift_entry)
     elif encryption_drop == 'Vigenère':
         text_encrypt = c.encode(shift_entry, text_plain)
+        
     else:
         return
 def decoding(encryption_drop,shift_entry, text_unencrypted, text_encrypt):
