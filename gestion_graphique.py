@@ -4,23 +4,29 @@ import chiffrage_dechiffrage as c
 
 def coding(encryption_drop,shift_entry, text_unencrypted, text_encrypt):
     if encryption_drop == 'César':
-        text_encrypt = c.cesar_encryption(text_unencrypted)
+        text_encrypte = c.cesar_encryption(text_unencrypted)
+        text_encrypted.insert('1.0', text_encrypte)
     elif encryption_drop == 'César avec décalage incrémental':
-        text_encrypt = c.cesar_encryption(text_unencrypted, shift_entry)
+        text_encrypte = c.cesar_encryption(text_unencrypted, shift_entry)
+        text_encrypted.insert('1.0', text_encrypte)
     elif encryption_drop == 'Vigenère':
-        text_encrypt = c.encode(shift_entry, text_plain)
-        
+        text_encrypte = c.encode(shift_entry, text_unencrypted)
+        text_encrypted.insert('1.0', text_encrypte)
+
     else:
         return
 def decoding(encryption_drop,shift_entry, text_unencrypted, text_encrypt):
     if encryption_drop == 'César':
-        text_unencrypted = c.cesar_decryption(text_encrypt)
+        text_nonencrypted = c.cesar_decryption(text_encrypt)
+        text_plain.insert('1.0', text_nonencrypted)
     
     elif encryption_drop == 'César avec décalage incrémental':
-        text_unencrypted = c.cesar_decryption(text_encrypt, shift_entry)
+        text_nonencrypted = c.cesar_decryption(text_encrypt, shift_entry)
+        text_plain.insert('1.0', text_nonencrypted)
         
     elif encryption_dropdown == 'Vigenère':
-        text_unencrypted = c.decode(shift_entry, text_encrypt)
+        text_nonencrypted = c.decode(shift_entry, text_encrypt)
+        text_plain.insert('1.0', text_nonencrypted)
     else:
         return
 
