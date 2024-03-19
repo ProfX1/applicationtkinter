@@ -26,7 +26,7 @@ def decoding(encryption_drop,shift_entry, text_unencrypted, text_encrypt):
         text_nonencrypted = c.cesar_decryption(text_encrypt, shift_entry)
         text_plain.insert('1.0', text_nonencrypted)
         
-    elif encryption_dropdown == 'Vigenère':
+    elif encryption_drop == 'Vigenère':
         text_nonencrypted = c.decode(shift_entry, text_encrypt)
         text_plain.insert('1.0', text_nonencrypted)
     else:
