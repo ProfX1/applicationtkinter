@@ -3,35 +3,31 @@ from tkinter import END, ttk
 import chiffrage_dechiffrage as c
 
 def coding(encryption_drop,shift_entry, text_unencrypted, text_encrypt):
+    text_encrypted.delete('1.0', END)
     if encryption_drop == 'César':
         text_encrypte = c.cesar_encryption(text_unencrypted)
-        text_encrypted.delete('1.0', END)
         text_encrypted.insert('1.0', text_encrypte)
     elif encryption_drop == 'César avec décalage incrémental':
         text_encrypte = c.cesar_encryption(text_unencrypted, shift_entry)
-        text_encrypted.delete('1.0', END)
         text_encrypted.insert('1.0', text_encrypte)
     elif encryption_drop == 'Vigenère':
         text_encrypte = c.encode(shift_entry, text_unencrypted)
-        text_encrypted.delete('1.0', END)
         text_encrypted.insert('1.0', text_encrypte)
 
     else:
         return
 def decoding(encryption_drop,shift_entry, text_unencrypted, text_encrypt):
+    text_plain.delete('1.0', END)
     if encryption_drop == 'César':
         text_nonencrypted = c.cesar_decryption(text_encrypt)
-        text_plain.delete('1.0', END)
         text_plain.insert('1.0', text_nonencrypted)
     
     elif encryption_drop == 'César avec décalage incrémental':
         text_nonencrypted = c.cesar_decryption(text_encrypt, shift_entry)
-        text_plain.delete('1.0', END)
         text_plain.insert('1.0', text_nonencrypted)
         
     elif encryption_dropdown == 'Vigenère':
         text_nonencrypted = c.decode(shift_entry, text_encrypt)
-        text_plain.delete('1.0', END)
         text_plain.insert('1.0', text_nonencrypted)
     else:
         return
