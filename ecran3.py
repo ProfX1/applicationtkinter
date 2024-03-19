@@ -23,21 +23,20 @@ def decode():
 
 # Initialize the main window
 root = tk.Tk()
-root.title('tk')
-root.configure(bg='light grey')
+root.title('Application de Chiffrage de contenu web')
 
-# Menu bar
-menu_bar = Menu(root)
-root.config(menu=menu_bar)
+# Create the menu bar
+menu = tk.Menu(root)
+# Configure the menu bar
+root.config(menu=menu)
+# Add menu items directly to the menu bar for horizontal layout
+menu.add_command(label='Chiffrage de Texte')
+menu.add_command(label='Chiffrage de Fichier')
+menu.add_command(label='Chiffrage de contenu web')
 
-# Add menu items
-file_menu = Menu(menu_bar, tearoff=0)
-file_menu.add_command(label='Chiffrage de Texte')
-file_menu.add_command(label='Chiffrage de Fichier')
-file_menu.add_command(label='Chiffrage de contenu web')
-file_menu.add_separator()
-file_menu.add_command(label='Fermer', command=root.quit)
-menu_bar.add_cascade(label='File', menu=file_menu)
+# Add a separator and a quit command
+menu.add_separator()
+menu.add_command(label='Fermer', command=root.quit)
 
 # Main frame
 main_frame = tk.Frame(root, bg='light grey')
@@ -48,7 +47,7 @@ left_frame = tk.Frame(main_frame, bg='light grey')
 left_frame.pack(side=tk.LEFT, fill='both', expand=True, padx=10, pady=10)
 
 # URL and Selector Entries and Labels
-label_url_selector = tk.Label(left_frame, text="Url, et Selecteur:", bg='light grey')
+label_url_selector = tk.Label(left_frame, text="Url, et Selecteur:", bg='white')
 label_url_selector.pack(fill='x')
 entry_url = ttk.Entry(left_frame, width=50)
 entry_url.pack(fill='x', padx=5, pady=5)
@@ -56,7 +55,7 @@ entry_selector = ttk.Entry(left_frame, width=50)
 entry_selector.pack(fill='x', padx=5, pady=5)
 
 # Button Frame for vertical alignment
-button_frame = tk.Frame(left_frame, bg='light grey')
+button_frame = tk.Frame(left_frame, bg='white')
 button_frame.pack(fill='x', padx=5, pady=5)
 
 # Encode and Decode Buttons
@@ -66,21 +65,21 @@ button_decode = tk.Button(button_frame, text='<= Decoder <=', command=decode)
 button_decode.pack(side=tk.TOP, fill='x')
 
 # Dropdown for encryption methods and labels
-label_method = tk.Label(left_frame, text='Fonction de chiffrage:', bg='light grey')
+label_method = tk.Label(left_frame, text='Fonction de chiffrage:', bg='white')
 label_method.pack(side=tk.LEFT,padx=1)
 encryption_methods = tk.StringVar()
 encryption_dropdown = ttk.Combobox(left_frame, textvariable=encryption_methods, state="readonly")
 encryption_dropdown['values'] = ('Cesar', 'César avec décalage incrémental', 'Vigenère')  # Add other methods as needed
-encryption_dropdown.pack(fill= 'x')
+encryption_dropdown.pack(side=tk.LEFT,padx=1)
 encryption_dropdown.current(0)
 
 # Shift Entry and Label in their own frame for vertical alignment
-shift_frame = tk.Frame(left_frame, bg='light grey')
+shift_frame = tk.Frame(left_frame, bg='white')
 shift_frame.pack(fill='x', pady=5)
-label_shift = tk.Label(shift_frame, text='Nombre de décalage:', bg='light grey')
+label_shift = tk.Label(shift_frame, text='Nombre de décalage:', bg='white')
 label_shift.pack(side=tk.LEFT)
 shift_entry = tk.Entry(shift_frame, width=5)
-shift_entry.pack(side=tk.LEFT, padx=5)
+shift_entry.pack(side=tk.LEFT, padx=5, pady=2)
 shift_entry.insert(0, "1")  # Default shift value
 
 # Right frame for result
