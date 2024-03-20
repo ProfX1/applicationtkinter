@@ -68,12 +68,6 @@ key_label.grid(row=4, column=0, padx=5, pady=5, sticky="e")
 key_entry = ttk.Entry(root, width=50)
 key_entry.grid(row=4, column=1, padx=5, pady=5, columnspan=2)
 
-# Encrypt Button
-encrypt_button = ttk.Button(root, text="Encrypt", command=lambda: encrypt_decrypt('encrypt'))
-encrypt_button.grid(row=5, column=0, padx=5, pady=5)
 
-# Decrypt Button
-decrypt_button = ttk.Button(root, text="Decrypt", command=lambda: encrypt_decrypt('decrypt'))
-decrypt_button.grid(row=5, column=1, padx=5, pady=5)
 
 root.mainloop()
