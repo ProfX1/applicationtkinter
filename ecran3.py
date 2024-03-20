@@ -1,25 +1,6 @@
 import tkinter as tk
 from tkinter import ttk, filedialog, Menu
 
-# Define the encryption/decryption functions (placeholders for this example)
-def encrypt_decrypt(text, shift, mode='encrypt'):
-    # Placeholder for the actual encryption/decryption logic
-    return text
-
-# Define the GUI callbacks
-def encode():
-    url = entry_url.get()
-    selector = entry_selector.get()
-    # Placeholder for the actual encoding logic using url and selector
-    result = encrypt_decrypt(url + selector, int(shift_entry.get()), mode='encrypt')
-    text_result.delete("1.0", tk.END)
-    text_result.insert(tk.END, result)
-
-def decode():
-    encrypted_text = text_result.get("1.0", tk.END).strip()
-    result = encrypt_decrypt(encrypted_text, int(shift_entry.get()), mode='decrypt')
-    entry_url.delete(0, tk.END)
-    entry_url.insert(0, result)
 
 # Initialize the main window
 root = tk.Tk()
