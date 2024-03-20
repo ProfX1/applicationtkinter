@@ -1,0 +1,95 @@
+import tkinter as tk
+from tkinter import ttk, messagebox
+import chiffrage_dechiffrage as c
+
+# Define the GUI callbacks
+def encode():
+    # Fetching data from GUI
+    text_unencrypted = text_plain.get("1.0", tk.END).strip()
+    shift_value = shift_entry.get()
+    encryption_method = encryption_dropdown.get()
+
+    # Encrypting based on the selected method
+    if encryption_method == 'César':
+        encrypted_text = c.cesar_encryption(text_unencrypted, int(shift_value))
+    elif encryption_method == 'César avec décalage incrémental':
+        encrypted_text = c.cesar_encryption_incremental(text_unencrypted, int(shift_value))
+    elif encryption_method == 'Vigenère':
+        encrypted_text = c.vigenere_encryption(text_unencrypted, shift_value)
+
+    # Displaying the encrypted text
+    text_encrypted.delete("1.0", tk.END)
+    text_encrypted.insert("1.0", encrypted_text)
+
+def decode():
+    # Fetching data from GUI
+    text_encrypted_value = text_encrypted.get("1.0", tk.END).strip()
+    shift_value = shift_entry.get()
+    encryption_method = encryption_dropdown.get()
+
+    # Decrypting based on the selected method
+    if encryption_method == 'César':
+        decrypted_text = c.cesar_decryption(text_encrypted_value, int(shift_value))
+    elif encryption_method == 'César avec décalage incrémental':
+        decrypted_text = c.cesar_decryption_incremental(text_encrypted_value, int(shift_value))
+    elif encryption_method == 'Vigenère':
+        decrypted_text = c.vigenere_decryption(text_encrypted_value, shift_value)
+
+    # Displaying the decrypted text
+    text_plain.delete("1.0", tk.END)
+    text_plain.insert("1.0", decrypted_text)
+
+# Initialize the main window
+root = tk.Tk()
+root.title('Application de Chiffrage de Texte et Contenu Web')
+
+# Menu bar configuration...
+menu_bar = tk.Menu(root)
+root.config(menu=menu_bar)
+file_menu = tk.Menu(menu_bar, tearoff=0)
+file_menu.add_command(label='Chiffrage de Texte')
+file_menu.add_command(label='Chiffrage de Fichiers')
+file_menu.add_command(label='Chiffrage de Contenu Web')
+file_menu.add_separator()
+file_menu.add_command(label='Fermer', command=root.quit)
+menu_bar.add_cascade(label='Fichier', menu=file_menu)
+
+# Main frame setup
+main_frame = tk.Frame(root, bg='grey')
+main_frame.pack(padx=10, pady=10)
+
+# Left side (Plain text)
+label_plain = tk.Label(main_frame, text='Texte en clair:')
+label_plain.grid(row=0, column=0, padx=5, pady=5)
+text_plain = tk.Text(main_frame, height=10, width=40)
+text_plain.grid(row=1, column=0, padx=5, pady=5)
+
+# Right side (Encrypted text)
+label_encrypted = tk.Label(main_frame, text='Texte Chiffré:')
+label_encrypted.grid(row=0, column=2, padx=5, pady=5)
+text_encrypted = tk.Text(main_frame, height=10, width=40)
+text_encrypted.grid(row=1, column=2, padx=5, pady=5)
+
+# Encryption method dropdown and label
+encryption_methods = tk.StringVar()
+encryption_dropdown = ttk.Combobox(main_frame, textvariable=encryption_methods, state="readonly")
+encryption_dropdown['values'] = ('César', 'César avec décalage incrémental', 'Vigenère')
+encryption_dropdown.grid(row=2, column=1, padx=5, pady=5)
+encryption_dropdown.current(0)
+
+# Shift Entry and Label
+shift_label = tk.Label(main_frame, text='Nombre de décalage:')
+shift_label.grid(row=3, column=0, padx=5, pady=5, sticky='e')
+shift_entry = tk.Entry(main_frame)
+shift_entry.grid(row=3, column=1, padx=5, pady=5, sticky='w')
+shift_entry.insert(0, '1')  # Default shift value
+
+# Middle (Buttons)
+button_frame = tk.Frame(main_frame, bg='grey')
+button_frame.grid(row=1, column=1, padx=5, pady=5)
+encrypt_button = tk.Button(button_frame, text='=> Encoder =>', command=encode)
+encrypt_button.pack(side=tk.TOP, pady=5)
+decrypt_button = tk.Button(button_frame, text='<= Décoder <=', command=decode)
+decrypt_button.pack(side=tk.TOP, pady=5)
+
+root.mainloop()

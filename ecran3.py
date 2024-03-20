@@ -70,7 +70,7 @@ label_method.pack(side=tk.LEFT,padx=1)
 encryption_methods = tk.StringVar()
 encryption_dropdown = ttk.Combobox(left_frame, textvariable=encryption_methods, state="readonly")
 encryption_dropdown['values'] = ('Cesar', 'César avec décalage incrémental', 'Vigenère')  # Add other methods as needed
-encryption_dropdown.pack(side=tk.LEFT,padx=5)
+encryption_dropdown.pack(side=tk.LEFT,padx=1)
 encryption_dropdown.current(0)
 
 # Shift Entry and Label 
