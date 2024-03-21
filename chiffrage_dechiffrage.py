@@ -5,26 +5,47 @@ import base64
 
 def cesar_encryption (message, offset = 1):
 	encrypted_message = ""
-	count=len(message)-1
-	counter=0
 	for char in message:
-		if counter<count:
-			counter+=1
-			encrypted_message += chr(ord(char) + int(offset))
-		
-		print(encrypted_message)
+		if(char.isupper()):
+			newcharNumer=ord(char)+offset
+			if newcharNumer> ord('Z'):
+				newcharNumer = newcharNumer-26
+
+			encrypted_message += chr(newcharNumer)
+		elif(char.islower()):
+			newcharNumer=ord(char)+offset
+			if newcharNumer> ord('z'):
+				newcharNumer = newcharNumer-26
+			encrypted_message += chr(newcharNumer)
+				
+
+		# print(encrypted_message)
+		else:
+			encrypted_message += char
 	return encrypted_message
 
-# print (cesar_encryption("I LOVE NATURE", 1)) # J!MPWF!OBUVSF
+# print(cesar_encryption("I LOVE NATURE  yes", 1)) # J!MPWF!OBUVSF
 
 def cesar_decryption (encrypted_message, offset = 1):
-    message = ""
+	message = ""
+	
+	for char in encrypted_message:
+		if(char.isupper()):
+			newcharNumer=ord(char)-offset
+			if newcharNumer< ord('A'):
+				newcharNumer = newcharNumer-26
 
-    for char in encrypted_message:
-        message += chr(ord(char) - int(offset))
-    return message
+			message += chr(newcharNumer)
+		elif(char.islower()):
+			newcharNumer=ord(char)-offset
+			if newcharNumer< ord('a'):
+				newcharNumer = newcharNumer-26
+			message += chr(newcharNumer)
+		else:
+			message += char
+	return message
 
-# print (cesar_decryption("J!MPWF!OBUVSF", 1)) # J!MPWF!OBUVSF
+print (cesar_decryption("J MPWF OBUVSF", 1)) # J!MPWF!OBUVSF
 
 #Function to encode
 def encode(key, clear):
