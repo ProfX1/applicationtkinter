@@ -1,91 +1,51 @@
-from tkinter import IntVar, StringVar, Tk, Label, Button, Frame, OptionMenu, Radiobutton, Menu, Menubutton, Checkbutton,filedialog
-from tkinter import Label,Entry,Text
-
-from tkinter import ttk
+# import tkinter module
+from tkinter import Tk, Label, Button, Frame
  
-def coucou():
-    print("coucou")
 
+# creating main tkinter window/toplevel
 master = Tk()
-master.title("griddemo0: placer avec grid")
+master.title("griddemo4")
+master.minsize(500, 250)
+master.maxsize(500, 250)
 
-l1 = Label(master, text = "bouton de base:")
-l1.grid(row = 0, column = 0, pady = 2)
+def screen1():
+    frame1 = Frame(master, width=500,height=250, bg='green')    
+    frame1.place(x=0,y=0, width=500, height=250)
 
-b1 = Button(master, text = "bouton simple", command=coucou)
-b1.grid(row = 0, column = 1, pady = 2)
+    lbl = Label(frame1,text='screen1')
+    lbl.grid(row=0,column=0)
 
-l2 = ttk.Label(master, text = "bouton avance:")
-l2.grid(row = 0, column = 2, pady = 2)
- 
-b2 = ttk.Button(master, text = "button2", command=coucou)
-b2.grid(row = 0, column = 3, pady = 2)
+    btn2 = Button(frame1,text='Screen 2',command=screen2)
+    btn2.grid(row=2,column=0)
 
+    btn3 = Button(frame1,text='Screen 3',command=screen3)
+    btn3.grid(row=3,column=0)
 
-l1 = Label(master, text = "zone de texte de base:")
-l1.grid(row = 1, column = 0, pady = 2)
+def screen2():
+    frame2 = Frame(master, width=500,height=250,bg='red')    
+    frame2.place(x=0,y=0, width=500, height=250)
 
-b1 = Entry(master)
-b1.grid(row = 1, column = 1, pady = 2)
+    lbl = Label(frame2,text='screen2')
+    lbl.grid(row=0,column=0)
 
-l2 = ttk.Label(master, text = "zone de texte avance:")
-l2.grid(row = 1, column = 3, pady = 2)
- 
-b2 = ttk.Entry(master)
-b2.grid(row = 1, column = 4, pady = 2)
+    btn1 = Button(frame2,text='Screen 1',command=screen1)
+    btn1.grid(row=1,column=0)
 
+    btn3 = Button(frame2,text='Screen 3',command=screen3)
+    btn3.grid(row=3,column=0)
 
-l3 = Label(master, text = "zone de texte large:")
-l3.grid(row = 4, column = 0, pady = 2)
+def screen3():
+    frame3 = Frame(master, width=500,height=250,bg='red')
+    frame3.place(x=0,y=0, width=500, height=250)
 
-b3 = Text(master, width=20, height=3)
-b3.grid(row = 4, column = 1, pady = 2)
+    lbl = Label(frame3,text='screen3')
+    lbl.grid(row=0,column=0)
 
+    btn1 = Button(frame3,text='Screen 1',command=screen1)
+    btn1.grid(row=1,column=0)
 
-l4 = Label(master, text = "menu deroulant de base:")
-l4.grid(row = 5, column = 0, pady = 2)
+    btn2 = Button(frame3,text='Screen 2',command=screen2)
+    btn2.grid(row=3,column=0)
 
-options = ["option1", "option2", "option3"]
-clicked = StringVar()
-drop = OptionMenu( master , clicked , *options )
-drop.grid(row = 5, column = 1, pady = 2)
-
-l5 = Label(master, text = "menu deroulant avance:")
-l5.grid(row = 5, column = 2, pady = 2)
-
-drop2 = ttk.OptionMenu( master , clicked , *options )
-drop2.grid(row = 5, column = 3, pady = 2)
-
-l6 = Label(master, text = "radio de base:")
-l6.grid(row = 6, column = 0, pady = 2)
-
-var = IntVar()
-radio = Radiobutton(master, text='radio1', value=1, variable=var)
-radio.grid(row = 6, column = 1, pady = 2)
-
-radio2 = Radiobutton(master, text='radio2', value=2, variable=var)
-radio2.grid(row = 7, column = 1, pady = 2)
-
-
-l7 = Label(master, text = "radio de avance:")
-l7.grid(row = 6, column = 0, pady = 2)
-
-radio3 = ttk.Radiobutton(master, text='radio1', value=1, variable=var)
-radio3.grid(row = 6, column = 3, pady = 2)
-
-radio4 = ttk.Radiobutton(master, text='radio2', value=2, variable=var)
-radio4.grid(row = 7, column = 3, pady = 2)
-
-
-l8 = Label(master, text = "checkbox:")
-l1.grid(row = 8, column = 0, pady = 2)
-
-cvalue  =IntVar()
-c1 = Checkbutton(master, text = "check me", command=coucou, variable=cvalue)
-c1.grid(row = 8, column = 1, pady = 2)
-
-c2 = ttk.Checkbutton(master, text = "check me avance", variable=cvalue)
-c2.grid(row = 8, column = 3, pady = 2)
-
-
+screen1()
 master.mainloop()
