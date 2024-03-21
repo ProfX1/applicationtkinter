@@ -1,23 +1,57 @@
 import tkinter as tk
 from tkinter import ttk, filedialog, Menu
 
+# Fonction de simulation pour l'encodage
+def encode():
+    # Simuler l'encodage
+    text = entry_url.get() + " " + entry_selector.get()
+    encoded_text = f"Encodé: {text}"
+    text_result.delete('1.0', tk.END)
+    text_result.insert(tk.END, encoded_text)
 
-# Initialize the main window
+# Fonction de simulation pour le décodage
+def decode():
+    # Simuler le décodage
+    encoded_text = text_result.get('1.0', tk.END)
+    decoded_text = f"Décodé: {encoded_text}"
+    text_result.delete('1.0', tk.END)
+    text_result.insert(tk.END, decoded_text)
+
+# Initialiser la fenêtre principale
 root = tk.Tk()
 root.title('Application de Chiffrage de contenu web')
+main_frame = tk.Frame(root, bg='light grey')
 
 # Create the menu bar
 menu = tk.Menu(root)
 # Configure the menu bar
 root.config(menu=menu)
-# Add menu items directly to the menu bar for horizontal layout
-menu.add_command(label='Chiffrage de Texte')
-menu.add_command(label='Chiffrage de Fichier')
-menu.add_command(label='Chiffrage de contenu web')
 
-# Add a separator and a quit command
+# Fonctions pour afficher différents contenus
+def show_text_encryption():
+        clear_main_frame()
+        tk.Label(main_frame, text="Chiffrage de Texte").pack()
+
+def show_file_encryption():
+        clear_main_frame()
+        tk.Label(main_frame, text="Chiffrage de Fichier").pack()
+
+def show_web_content_encryption():
+        clear_main_frame()
+        tk.Label(main_frame, text="Chiffrage de contenu web").pack()
+
+def clear_main_frame():
+    for widget in main_frame.winfo_children():
+        widget.destroy()
+        
+ # Ajout des éléments de menu
+menu.add_command(label='Chiffrage de Texte', command=show_text_encryption)
+menu.add_command(label='Chiffrage de Fichier', command=show_file_encryption)
+menu.add_command(label='Chiffrage de contenu web', command=show_web_content_encryption)
 menu.add_separator()
 menu.add_command(label='Fermer', command=root.quit)
+
+show_web_content_encryption()  # Afficher par défaut le contenu de chiffrage web
 
 # Main frame
 main_frame = tk.Frame(root, bg='light grey')

@@ -93,3 +93,4 @@ decrypt_button = tk.Button(button_frame, text='<= Décoder <=', command=decode)
 decrypt_button.pack(side=tk.TOP, pady=5)
 
 root.mainloop()
+ 
