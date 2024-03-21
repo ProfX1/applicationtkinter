@@ -4,11 +4,16 @@ import base64
 
 
 def cesar_encryption (message, offset = 1):
-    encrypted_message = ""
-
-    for char in message:
-        encrypted_message += chr(ord(char) + int(offset))
-    return encrypted_message
+	encrypted_message = ""
+	count=len(message)-1
+	counter=0
+	for char in message:
+		if counter<count:
+			counter+=1
+			encrypted_message += chr(ord(char) + int(offset))
+		
+		print(encrypted_message)
+	return encrypted_message
 
 # print (cesar_encryption("I LOVE NATURE", 1)) # J!MPWF!OBUVSF
 

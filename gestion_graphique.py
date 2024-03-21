@@ -4,12 +4,15 @@ import chiffrage_dechiffrage as c
 
 def coding(encryption_drop,shift_entry, text_unencrypted, text_encrypt):
     text_encrypted.delete('1.0', END)
+
     if encryption_drop == 'César':
         text_encrypte = c.cesar_encryption(text_unencrypted)
         text_encrypted.insert('1.0', text_encrypte)
+
     elif encryption_drop == 'César avec décalage incrémental':
         text_encrypte = c.cesar_encryption(text_unencrypted, shift_entry)
         text_encrypted.insert('1.0', text_encrypte)
+
     elif encryption_drop == 'Vigenère':
         text_encrypte = c.encode(shift_entry, text_unencrypted)
         text_encrypted.insert('1.0', text_encrypte)
@@ -18,6 +21,7 @@ def coding(encryption_drop,shift_entry, text_unencrypted, text_encrypt):
         return
 def decoding(encryption_drop,shift_entry, text_unencrypted, text_encrypt):
     text_plain.delete('1.0', END)
+    
     if encryption_drop == 'César':
         text_nonencrypted = c.cesar_decryption(text_encrypt)
         text_plain.insert('1.0', text_nonencrypted)
@@ -87,9 +91,9 @@ shift_entry.grid(row=3, column=1, padx=5, pady=5, sticky='w')
 # Middle (Buttons)
 button_frame = tk.Frame(main_frame, bg='grey')
 button_frame.grid(row=1, column=1, padx=5, pady=5)
-encrypt_button = tk.Button(button_frame, text='=> Encoder =>', command=lambda: coding(encryption_methods.get(),shift_entry.get(), text_plain.get("1.0", tk.END), text_encrypted.get("1.0", tk.END)))
+encrypt_button = tk.Button(button_frame, text='=> Encoder =>', command=lambda: coding(encryption_methods.get(),shift_entry.get(), text_plain.get("1.0", END), text_encrypted.get("1.0", END)))
 encrypt_button.pack(side=tk.TOP, pady=5)
-decrypt_button = tk.Button(button_frame, text='<= Décoder<=', command=lambda: decoding(encryption_methods.get(),shift_entry.get(), text_plain.get("1.0", tk.END), text_encrypted.get("1.0", tk.END)))
+decrypt_button = tk.Button(button_frame, text='<= Décoder<=', command=lambda: decoding(encryption_methods.get(),shift_entry.get(), text_plain.get("1.0", END), text_encrypted.get("1.0", END)))
 decrypt_button.pack(side=tk.TOP, pady=5)
 
 root.mainloop()
