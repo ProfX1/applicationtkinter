@@ -57,19 +57,37 @@ def decrypt_text():
 # Create the main application window
 root = tk.Tk()
 root.title('Application de Chiffrage')
-root.configure(bg='blue')
-
+main_frame = tk.Frame(root, bg='light grey')
 # Menu bar at the top
-menu_bar = tk.Menu(root, bg='white')
-root.config(menu=menu_bar)
+menu = tk.Menu(root, bg='white')
+root.config(menu=menu)
 
-# Menu items
-file_menu = tk.Menu(menu_bar, tearoff=0)
-file_menu.add_command(label='Chiffrage de Texte')  # Placeholder for functionality
-file_menu.add_command(label='Chiffrage de Fichiers')  # Placeholder for functionality
-file_menu.add_separator()
-file_menu.add_command(label='Fermer', command=root.quit)
-menu_bar.add_cascade(label='Fichier', menu=file_menu)
+# Fonctions pour afficher différents contenus
+def show_text_encryption():
+        clear_main_frame()
+        tk.Label(main_frame, text="Chiffrage de Texte").pack()
+
+def show_file_encryption():
+        clear_main_frame()
+        tk.Label(main_frame, text="Chiffrage de Fichier").pack()
+
+def show_web_content_encryption():
+        clear_main_frame()
+        tk.Label(main_frame, text="Chiffrage de contenu web").pack()
+
+def clear_main_frame():
+    for widget in main_frame.winfo_children():
+        widget.destroy()
+        
+ # Ajout des éléments de menu
+menu.add_command(label='Chiffrage de Texte', command=show_text_encryption)
+menu.add_command(label='Chiffrage de Fichier', command=show_file_encryption)
+menu.add_command(label='Chiffrage de contenu web', command=show_web_content_encryption)
+menu.add_separator()
+menu.add_command(label='Fermer', command=root.quit)
+
+show_web_content_encryption()  # Afficher par défaut le contenu de chiffrage web
+
 
 # Text Encryption Frame
 text_frame = tk.Frame(root, bg='blue')
