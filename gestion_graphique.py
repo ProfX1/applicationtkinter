@@ -58,11 +58,11 @@ def decoding2(encryption_drop,shift_entry, text_encrypt):
         return
 
 def scrape_and_cipher(url, selector, method,shift, text):
-    url = url.get(1.0, END)
-    selector = selector.get(1.0, END)
+    url_get = url.get(1.0, END)
+    selector_get = selector.get(1.0, END)
     try:
         # Fetch the content of the URL
-        response = requests.get(url)
+        response = requests.get(url_get)
         response.raise_for_status()  # Raise an exception for HTTP errors
         html = response.text
         
@@ -70,7 +70,7 @@ def scrape_and_cipher(url, selector, method,shift, text):
         soup = BeautifulSoup(html, 'html.parser')
         
         # Find element by CSS selector
-        element = soup.select_one(selector)
+        element = soup.select_one(selector_get)
         
         if element:
             content = element.get_text()
