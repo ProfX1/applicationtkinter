@@ -69,7 +69,7 @@ entry_url.pack(fill='x', padx=5, pady=5)
 entry_selector = ttk.Entry(left_frame, width=50)
 entry_selector.pack(fill='x', padx=5, pady=5)
 
-# Button Frame for vertical alignment
+# Button Frame 
 button_frame = tk.Frame(left_frame, bg='white')
 button_frame.pack(fill='x', padx=5, pady=5)
 
