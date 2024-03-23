@@ -133,7 +133,7 @@ def screen1():
     clear_screen()
     menu()
     # Create the main frame
-    main_frame = tk.Frame(root, bg='grey')
+    main_frame = tk.Frame(root, bg='light grey')
     main_frame.pack(padx=10, pady=10)
 
     # Left side (Plain text)
