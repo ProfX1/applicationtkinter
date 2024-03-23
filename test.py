@@ -3,9 +3,10 @@ from tkinter import ttk
 import requests
 from bs4 import BeautifulSoup
 
-def scrape_and_cipher():
-    url = url_entry.get()
-    selector = selector_entry.get()
+def scrape_and_cipher(url1, selector1, text1):
+    url = url1.get()
+    selector = selector1.get()
+    
     try:
         # Fetch the content of the URL
         response = requests.get(url)
@@ -20,14 +21,14 @@ def scrape_and_cipher():
         
         if element:
             content = element.get_text()
-            result_text.delete(1.0, tk.END)
-            result_text.insert(tk.END, content)
+            text1.delete(1.0, tk.END)
+            text1.insert(tk.END, content)
         else:
-            result_text.delete(1.0, tk.END)
-            result_text.insert(tk.END, 'Element not found with the specified selector.')
+            text1.delete(1.0, tk.END)
+            text1.insert(tk.END, 'Element not found with the specified selector.')
     except Exception as e:
-        result_text.delete(1.0, tk.END)
-        result_text.insert(tk.END, 'An error occurred. Please check the URL or selector.')
+        text1.delete(1.0, tk.END)
+        text1.insert(tk.END, 'An error occurred. Please check the URL or selector.')
         print('An error occurred:', e)
 
 def encrypt_decrypt(mode):
@@ -54,13 +55,13 @@ selector_label.grid(row=1, column=0, padx=5, pady=5, sticky="e")
 selector_entry = ttk.Entry(root, width=50)
 selector_entry.grid(row=1, column=1, padx=5, pady=5, columnspan=2)
 
-# Scrape & Cipher Button
-scrape_button = ttk.Button(root, text="Scrape & Cipher", command=scrape_and_cipher)
-scrape_button.grid(row=2, column=0, padx=5, pady=5)
-
 # Result Text
 result_text = tk.Text(root, height=10, width=50)
 result_text.grid(row=3, column=0, columnspan=3, padx=5, pady=5)
+
+# Scrape & Cipher Button
+scrape_button = ttk.Button(root, text="Scrape & Cipher", command=lambda: scrape_and_cipher(url_entry, selector_entry, result_text))
+scrape_button.grid(row=2, column=0, padx=5, pady=5)
 
 # Key Entry
 key_label = ttk.Label(root, text="Key:")

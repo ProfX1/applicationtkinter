@@ -39,27 +39,37 @@ def decoding(encryption_drop,shift_entry, text_unencrypted, text_encrypt):
     else:
         return
     
-def decoding2(encryption_drop,shift_entry, text_encrypt):
-    text_encryption=text_encrypt.get("1.0", END)
-    text_encrypt.delete('1.0', END)
-
+def decoding2(encryption_drop,shift_entry, text_encryption):
+    # text_encryption=text_encrypt.get("1.0", END)
+    # text_encrypt.delete('1.0', END)
+    print("I am in decoding2")
     if encryption_drop == 'César':
+        print("I am in cesar decoding2")
+        print(text_encryption.get("1.0", END))
         text_nonencrypted = c.cesar_decryption(text_encryption)
-        text_encrypt.insert('1.0', text_nonencrypted)
+        text_encryption.insert('1.0', text_nonencrypted)
     
     elif encryption_drop == 'César avec décalage incrémental':
+        print("I am in cesar with shift decoding2")
         text_nonencrypted = c.cesar_decryption(text_encryption, int(shift_entry))
-        text_encrypt.insert('1.0', text_nonencrypted)
+        text_encryption.insert('1.0', text_nonencrypted)
         
     elif encryption_drop == 'Vigenère':
+        print("I am in Vigenere")
         text_nonencrypted = c.decode(shift_entry, text_encryption)
-        text_encrypt.insert('1.0', text_nonencrypted)
+        text_encryption.insert('1.0', text_nonencrypted)
     else:
+        print("no action taken")
         return
 
-def scrape_and_cipher(url, selector, method,shift, text):
-    url_get = url.get(1.0, END)
-    selector_get = selector.get(1.0, END)
+def scrape_and_cipher(url, selector, method,shift, text_widget):
+    url_get = url.get()
+    selector_get = selector.get()
+    print(url_get)
+    print(selector_get)
+    print(method)
+    print(shift)
+    
     try:
         # Fetch the content of the URL
         response = requests.get(url_get)
@@ -74,15 +84,16 @@ def scrape_and_cipher(url, selector, method,shift, text):
         
         if element:
             content = element.get_text()
-            text.delete(1.0, END)
-            text.insert(1.0, content)
-            decoding2(method,shift, text)
+            text_widget.delete(1.0, END)
+            text_widget.insert(1.0, content)
+            print(text_widget.get("1.0", END))
+            decoding2(method,shift, text_widget)
         else:
-            text.delete(1.0, tk.END)
-            text.insert(tk.END, 'Element not found with the specified selector.')
+            text_widget.delete(1.0, tk.END)
+            text_widget.insert(tk.END, 'Element not found with the specified selector.')
     except Exception as e:
-        text.delete(1.0, tk.END)
-        text.insert(tk.END, 'An error occurred. Please check the URL or selector.')
+        text_widget.delete(1.0, tk.END)
+        text_widget.insert(tk.END, 'An error occurred. Please check the URL or selector.')
         print('An error occurred:', e)
 # Create the main application window
 root = tk.Tk()
@@ -164,14 +175,12 @@ def screen3():
     button_frame = tk.Frame(left_frame, bg='white')
     button_frame.pack(fill='x', padx=5, pady=5)
 
-   
-
     # Dropdown for encryption methods and labels
     label_method = tk.Label(left_frame, text='Fonction de chiffrage:', bg='white')
     label_method.pack(side=tk.LEFT,padx=1)
     encryption_methods = tk.StringVar()
     encryption_dropdown = ttk.Combobox(left_frame, textvariable=encryption_methods, state="readonly")
-    encryption_dropdown['values'] = ('Cesar', 'César avec décalage incrémental', 'Vigenère')  # Add other methods as needed
+    encryption_dropdown['values'] = ('César', 'César avec décalage incrémental', 'Vigenère')  # Add other methods as needed
     encryption_dropdown.pack(side=tk.LEFT,padx=1)
     encryption_dropdown.current(0)
 
@@ -194,10 +203,10 @@ def screen3():
     text_result = tk.Text(right_frame, height=10, width=50, bg='lavender')
     text_result.pack(fill='both', expand=True, padx=5, pady=5)
 
- # Encode and Decode Buttons
-    button_encode = tk.Button(button_frame, text='=> Encoder =>', command=scrape_and_cipher(entry_url, entry_selector,encryption_methods.get(),shift_entry.get(), text_result))
+    # Encode and Decode Buttons
+    button_encode = tk.Button(button_frame, text='=> Encoder =>', command=lambda: scrape_and_cipher(entry_url, entry_selector, encryption_methods.get(), shift_entry.get(), text_result))
     button_encode.pack(side=tk.TOP, fill='x')
-    button_decode = tk.Button(button_frame, text='<= Decoder <=', command=lambda: decoding2(encryption_methods.get(),shift_entry.get(), text_result))
+    button_decode = tk.Button(button_frame, text='<= Decoder <=', command=lambda: decoding2(encryption_methods.get(), shift_entry.get(), text_result))  # Pass Text widget object
     button_decode.pack(side=tk.TOP, fill='x')
 
 def menu():
