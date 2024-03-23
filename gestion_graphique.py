@@ -39,6 +39,26 @@ def decoding(encryption_drop,shift_entry, text_unencrypted, text_encrypt):
     else:
         return
     
+def coding2(encryption_drop,shift_entry, text_encryptOld):
+    text_unencrypted = text_encryptOld
+    
+    # text_encrypt.delete('1.0', END)
+
+    if encryption_drop == 'César':
+        return c.cesar_encryption(text_unencrypted)
+        # text_encrypt.insert('1.0', text_encrypte)
+
+    elif encryption_drop == 'César avec décalage incrémental':
+        return c.cesar_encryption(text_unencrypted, int(shift_entry))
+        # text_encrypt.insert('1.0', text_encrypte)
+
+    elif encryption_drop == 'Vigenère':
+        return c.encode(shift_entry, text_unencrypted)
+        # text_encrypt.insert('1.0', text_encrypte)
+
+    else:
+        return
+    
 def decoding2(encryption_drop,shift_entry, text_encryption):
     # text_encryption=text_encrypt.get("1.0", END)
     # text_encrypt.delete('1.0', END)
@@ -46,17 +66,20 @@ def decoding2(encryption_drop,shift_entry, text_encryption):
     if encryption_drop == 'César':
         print("I am in cesar decoding2")
         print(text_encryption.get("1.0", END))
-        text_nonencrypted = c.cesar_decryption(text_encryption)
+        text_nonencrypted = c.cesar_decryption(text_encryption.get("1.0", END))
+        text_encryption.delete('1.0', END)
         text_encryption.insert('1.0', text_nonencrypted)
     
     elif encryption_drop == 'César avec décalage incrémental':
         print("I am in cesar with shift decoding2")
-        text_nonencrypted = c.cesar_decryption(text_encryption, int(shift_entry))
+        text_nonencrypted = c.cesar_decryption(text_encryption.get("1.0", END), int(shift_entry))
+        text_encryption.delete('1.0', END)
         text_encryption.insert('1.0', text_nonencrypted)
         
     elif encryption_drop == 'Vigenère':
         print("I am in Vigenere")
-        text_nonencrypted = c.decode(shift_entry, text_encryption)
+        text_nonencrypted = c.decode(shift_entry, text_encryption.get("1.0", END))
+        text_encryption.delete('1.0', END)
         text_encryption.insert('1.0', text_nonencrypted)
     else:
         print("no action taken")
@@ -85,9 +108,11 @@ def scrape_and_cipher(url, selector, method,shift, text_widget):
         if element:
             content = element.get_text()
             text_widget.delete(1.0, END)
-            text_widget.insert(1.0, content)
-            print(text_widget.get("1.0", END))
-            decoding2(method,shift, text_widget)
+            # text_widget.insert(1.0, content)
+            # print(text_widget.get("1.0", END))
+            text_widget.insert('1.0', coding2(method,shift, content))
+            
+            
         else:
             text_widget.delete(1.0, tk.END)
             text_widget.insert(tk.END, 'Element not found with the specified selector.')
@@ -225,7 +250,7 @@ def menu():
 
 
 
-screen1()
+screen3()
 root.mainloop()
 
 
