@@ -5,7 +5,8 @@ import base64
 
 def cesar_encryption (message, offset = 1):
 	encrypted_message = ""
-	for char in message:
+	message1 = message.replace("\n", "")
+	for char in message1:
 		if(char.isupper()):
 			newcharNumer=ord(char)+offset
 			if newcharNumer> ord('Z'):
