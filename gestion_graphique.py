@@ -124,7 +124,7 @@ def scrape_and_cipher(url, selector, method,shift, text_widget):
 # Create the main application window
 root = tk.Tk()
 root.title('Application de Chiffrage de Texte')
-root.configure(bg='grey')
+root.configure(bg='light grey')
 
 def clear_screen():
     # Destroy all widgets in the root window
@@ -165,7 +165,7 @@ def screen1():
     shift_entry.grid(row=3, column=1, padx=5, pady=5, sticky='w')
 
     # Middle (Buttons)
-    button_frame = tk.Frame(main_frame, bg='grey')
+    button_frame = tk.Frame(main_frame, bg='light grey')
     button_frame.grid(row=1, column=1, padx=5, pady=5)
     encrypt_button = tk.Button(button_frame, text='=> Encoder =>', command=lambda: coding(encryption_methods.get(),shift_entry.get(), text_plain.get("1.0", END), text_encrypted))
     encrypt_button.pack(side=tk.TOP, pady=5)
@@ -182,26 +182,22 @@ def screen2():
         )
         if not filepath:
             return
-        txt_Data = open(filepath, mode="r", encoding="utf-8")
+        txt_Data = open(filepath,"r", encoding="utf-8")
         filetext.delete('1.0', END)
-        filetext.insert('1.0', txt_Data)
-
-
-
-    
-
+        filetext.insert('1.0', txt_Data.readlines())
 
     main_frame = tk.Frame(root, bg='light grey')
     main_frame.pack(padx=10, pady=10)
-
-    btn_open = tk.Button(root, text="Open", command=lambda: open_file(text_plain))
-    btn_open.grid(row=0, column=1, padx=5, pady=5)
 
     # Left side (Plain text)
     label_plain = tk.Label(main_frame, text='Texte en clair:')
     label_plain.grid(row=0, column=0, padx=5, pady=5)
     text_plain = tk.Text(main_frame, height=10, width=40)
     text_plain.grid(row=1, column=0, padx=5, pady=5)
+
+    # Middle open file
+    btn_open = tk.Button(main_frame, text="Open File", command=lambda: open_file(text_plain))
+    btn_open.grid(row=0, column=1, padx=5, pady=5)
 
     # Right side (Encrypted text)
     label_encrypted = tk.Label(main_frame, text='Texte Chiffré:')
@@ -225,7 +221,7 @@ def screen2():
     shift_entry.grid(row=3, column=1, padx=5, pady=5, sticky='w')
 
     # Middle (Buttons)
-    button_frame = tk.Frame(main_frame, bg='grey')
+    button_frame = tk.Frame(main_frame, bg='light grey')
     button_frame.grid(row=1, column=1, padx=5, pady=5)
     encrypt_button = tk.Button(button_frame, text='=> Encoder =>', command=lambda: coding(encryption_methods.get(),shift_entry.get(), text_plain.get("1.0", END), text_encrypted))
     encrypt_button.pack(side=tk.TOP, pady=5)
@@ -304,7 +300,7 @@ def menu():
 
 
 
-screen2()
+screen1()
 root.mainloop()
 
 
