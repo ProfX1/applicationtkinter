@@ -132,16 +132,17 @@ def clear_screen():
         widget.destroy()
 
 def screen0():
-    main_frame = tk.Frame(root, bg='light grey')
+    clear_screen()
+    main_frame = tk.Frame(root, bg='light grey', )
     main_frame.pack(padx=10, pady=10)
 
-    lb1 = tk.Label(main_frame, bg="grey", text="Menu")
+    lb1 = tk.Label(main_frame, bg='light grey', text="Menu", font=('Arial', 30))
     lb1.grid(row=0, column=0, pady=5, padx=5)
-    button1 = tk.Button(main_frame, bg='grey', text="Chiffrage de Texte", command=lambda: screen1)
+    button1 = tk.Button(main_frame, bg='grey', text="Chiffrage de Texte", command= screen1)
     button1.grid(row = 1, column=0, pady=5, padx=5)
-    button2 = tk.Button(main_frame, bg='grey', text="Chiffrage de Fichier", command=lambda: screen2)
+    button2 = tk.Button(main_frame, bg='grey', text="Chiffrage de Fichier", command= screen2)
     button2.grid(row = 2, column=0, pady=5, padx=5)
-    button3 = tk.Button(main_frame, bg='grey', text="Chiffrage de Page Web", command=lambda: screen1)
+    button3 = tk.Button(main_frame, bg='grey', text="Chiffrage de Page Web", command= screen3)
     button3.grid(row = 3, column=0, pady=5, padx=5)
 
 
@@ -306,9 +307,11 @@ def menu():
 
     # Menu items
     file_menu = tk.Menu(menu_bar, tearoff=0)
-    file_menu.add_command(label='Chiffrage de Texte', command=screen1)  # Placeholder for functionality
-    file_menu.add_command(label='Chiffrage de Fichiers', command=screen2)  # Placeholder for functionality
-    file_menu.add_command(label='Chiffrage de Contenu Web', command=screen3)  # Placeholder for functionality
+    file_menu.add_command(label='Menu Principal', command=screen0) # go to main menu
+    file_menu.add_separator()
+    file_menu.add_command(label='Chiffrage de Texte', command=screen1) # go to text encoding/decoding
+    file_menu.add_command(label='Chiffrage de Fichiers', command=screen2) # go to file encoding/decoding
+    file_menu.add_command(label='Chiffrage de Contenu Web', command=screen3) # go to web scraping and encoding/decoding  
     file_menu.add_separator()
     file_menu.add_command(label='Fermer', command=root.quit)
     menu_bar.add_cascade(label='Fichier', menu=file_menu)
