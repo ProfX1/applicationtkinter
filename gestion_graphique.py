@@ -182,51 +182,64 @@ def screen2():
     import tkinter as tk
     from tkinter import ttk
 
-    from tkinter.filedialog import askopenfilename, asksaveasfilename
+    from tkinter.filedialog import askopenfilename
 
 
-    def open_file():
+    def open_file(filetext):
         filepath = askopenfilename(
-            filetypes=[("Json Files", "*.json")]
+            filetypes=[("Text files", "*.txt")]
         )
         if not filepath:
             return
-        jsonData = json.load(open(filepath, mode="r", encoding="utf-8"))
-        txtfirstName.delete(0, tk.END)
-        txtfirstName.insert(0, jsonData["firstname"])
+        txt_Data = open(filepath, mode="r", encoding="utf-8")
+        filetext.delete('1.0', END)
+        filetext.insert('1.0', txt_Data)
 
-        txtlastName.delete(0, tk.END)
-        txtlastName.insert(0, jsonData["lastname"])
 
-        window.title(f"Simple Text Editor - {filepath}")
 
-    def save_file():
-        filepath = asksaveasfilename(
-            defaultextension=".txt",
-            filetypes=[("Json Files", "*.json")],
-        )
-        if not filepath:
-            return
-        jsonData = {
-            "firstname": txtfirstName.get(),
-            "lastname": txtlastName.get()
-        }
-        json.dump(jsonData, open(filepath, mode="w", encoding="utf-8"))
-        window.title(f"Simple Text Editor - {filepath}")
+    
 
-    window = tk.Tk()
-    window.title("Simple Text Editor")
 
-    btn_open = tk.Button(window, text="Open", command=open_file).pack()
-    btn_save = tk.Button(window, text="Save As...", command=save_file).pack()
+    main_frame = tk.Frame(root, bg='light grey')
+    main_frame.pack(padx=10, pady=10)
 
-    lblfirstName = ttk.Label(window, text="First Name").pack()
-    txtfirstName = ttk.Entry(window)
-    txtfirstName.pack()
+    btn_open = tk.Button(root, text="Open", command=lambda: open_file(text_plain))
+    btn_open.grid(row=0, column=1, padx=5, pady=5)
 
-    lbllastName = ttk.Label(window, text="Last Name").pack()
-    txtlastName = ttk.Entry(window)
-    txtlastName.pack()
+    # Left side (Plain text)
+    label_plain = tk.Label(main_frame, text='Texte en clair:')
+    label_plain.grid(row=0, column=0, padx=5, pady=5)
+    text_plain = tk.Text(main_frame, height=10, width=40)
+    text_plain.grid(row=1, column=0, padx=5, pady=5)
+
+    # Right side (Encrypted text)
+    label_encrypted = tk.Label(main_frame, text='Texte Chiffré:')
+    label_encrypted.grid(row=0, column=2, padx=5, pady=5)
+    text_encrypted = tk.Text(main_frame, height=10, width=40)
+    text_encrypted.grid(row=1, column=2, padx=5, pady=5)
+
+    # Encryption method dropdown
+    # Encryption method dropdown and label
+    encryption_methods = tk.StringVar()
+    encryption_method_label = tk.Label(main_frame, text='Fonction de chiffrage:')
+    encryption_method_label.grid(row=2, column=0, padx=5, pady=5, sticky='e')
+    encryption_dropdown = ttk.Combobox(main_frame, textvariable=encryption_methods, state="readonly", )
+    encryption_dropdown['values'] = ('César', 'César avec décalage incrémental', 'Vigenère')
+    encryption_dropdown.grid(row=2, column=1, padx=5, pady=5, sticky='w')
+    
+    # Entry for the number of shifts
+    shift_label = tk.Label(main_frame, text='Nombre de décalage:')
+    shift_label.grid(row=3, column=0, padx=5, pady=5, sticky='e')
+    shift_entry = tk.Entry(main_frame)
+    shift_entry.grid(row=3, column=1, padx=5, pady=5, sticky='w')
+
+    # Middle (Buttons)
+    button_frame = tk.Frame(main_frame, bg='grey')
+    button_frame.grid(row=1, column=1, padx=5, pady=5)
+    encrypt_button = tk.Button(button_frame, text='=> Encoder =>', command=lambda: coding(encryption_methods.get(),shift_entry.get(), text_plain.get("1.0", END), text_encrypted))
+    encrypt_button.pack(side=tk.TOP, pady=5)
+    decrypt_button = tk.Button(button_frame, text='<= Décoder<=', command=lambda: decoding(encryption_methods.get(),shift_entry.get(), text_plain, text_encrypted.get("1.0", END)))
+    decrypt_button.pack(side=tk.TOP, pady=5)
 
 def screen3():
     clear_screen()
