@@ -3,7 +3,7 @@ from tkinter import END, ttk
 import chiffrage_dechiffrage as c
 import requests
 from bs4 import BeautifulSoup
-import json
+from tkinter.filedialog import askopenfilename
 
 def coding(encryption_drop,shift_entry, text_unencrypted, text_encrypt):
     text_encrypt.delete('1.0', END)
@@ -175,15 +175,6 @@ def screen1():
 def screen2():
     clear_screen()
     menu()
-    # Main frame
-    main_frame = tk.Frame(root, bg='light grey')
-    main_frame.pack(fill='both', expand=True)
-    
-    import tkinter as tk
-    from tkinter import ttk
-
-    from tkinter.filedialog import askopenfilename
-
 
     def open_file(filetext):
         filepath = askopenfilename(
