@@ -63,27 +63,23 @@ def coding2(encryption_drop,shift_entry, text_encryptOld):
 def decoding2(encryption_drop,shift_entry, text_encryption):
     # text_encryption=text_encrypt.get("1.0", END)
     # text_encrypt.delete('1.0', END)
-    print("I am in decoding2")
+    
     if encryption_drop == 'César':
-        print("I am in cesar decoding2")
-        print(text_encryption.get("1.0", END))
         text_nonencrypted = c.cesar_decryption(text_encryption.get("1.0", END))
         text_encryption.delete('1.0', END)
         text_encryption.insert('1.0', text_nonencrypted)
     
     elif encryption_drop == 'César avec décalage incrémental':
-        print("I am in cesar with shift decoding2")
         text_nonencrypted = c.cesar_decryption(text_encryption.get("1.0", END), int(shift_entry))
         text_encryption.delete('1.0', END)
         text_encryption.insert('1.0', text_nonencrypted)
         
     elif encryption_drop == 'Vigenère':
-        print("I am in Vigenere")
         text_nonencrypted = c.decode(shift_entry, text_encryption.get("1.0", END))
         text_encryption.delete('1.0', END)
         text_encryption.insert('1.0', text_nonencrypted)
     else:
-        print("no action taken")
+        
         return
 
 def scrape_and_cipher(url, selector, method,shift, text_widget):
