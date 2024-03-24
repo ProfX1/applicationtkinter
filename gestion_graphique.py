@@ -130,6 +130,21 @@ def clear_screen():
     # Destroy all widgets in the root window
     for widget in root.winfo_children():
         widget.destroy()
+
+def screen0():
+    main_frame = tk.Frame(root, bg='light grey')
+    main_frame.pack(padx=10, pady=10)
+
+    lb1 = tk.Label(main_frame, bg="grey", text="Menu")
+    lb1.grid(row=0, column=0, pady=5, padx=5)
+    button1 = tk.Button(main_frame, bg='grey', text="Chiffrage de Texte", command=lambda: screen1)
+    button1.grid(row = 1, column=0, pady=5, padx=5)
+    button2 = tk.Button(main_frame, bg='grey', text="Chiffrage de Fichier", command=lambda: screen2)
+    button2.grid(row = 2, column=0, pady=5, padx=5)
+    button3 = tk.Button(main_frame, bg='grey', text="Chiffrage de Page Web", command=lambda: screen1)
+    button3.grid(row = 3, column=0, pady=5, padx=5)
+
+
 def screen1():
     clear_screen()
     menu()
@@ -300,7 +315,7 @@ def menu():
 
 
 
-screen1()
+screen0()
 root.mainloop()
 
 
