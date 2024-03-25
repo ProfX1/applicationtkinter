@@ -85,10 +85,10 @@ def decoding2(encryption_drop,shift_entry, text_encryption):
 def scrape_and_cipher(url, selector, method,shift, text_widget):
     url_get = url.get()
     selector_get = selector.get()
-    print(url_get)
-    print(selector_get)
-    print(method)
-    print(shift)
+    # print(url_get)
+    # print(selector_get)
+    # print(method)
+    # print(shift)
     
     try:
         # Fetch the content of the URL
